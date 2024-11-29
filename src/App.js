@@ -1,14 +1,20 @@
-import './App.css';
-import React, { Component } from 'react';
-
-export default class App extends Component {
-  render() {
-    
-    return (
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './component/navbar';
+import Login from './component/login';
+import Signup from './component/signup';
+function App() {
+  return (
+    <Router>
       <div>
-        <h>Hemant girase</h>
-
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup/>}/>
+        </Routes>
       </div>
-    );
-  }
+    </Router>
+  );
 }
+
+export default App;
