@@ -16,7 +16,6 @@ export default function Signup() {
     const [successMessage, setSuccessMessage] = useState('');
     const handleInputChange =(e)=>{
         const {name, value} = e.target;
-        console.log(formData);
         setFormData({...formData,[name]:value});
     };
 
@@ -24,8 +23,6 @@ export default function Signup() {
 
         //checking validation
         const{fname, lname, email, pass, confirmpass} =formData;
-        console.log(pass);
-        console.log(confirmpass);
         if (pass!==confirmpass){
             setErrorMessage('Password do not match')
         }
@@ -45,8 +42,7 @@ export default function Signup() {
           };
 
           try{
-            const apiURL = 'https://task-managementapi-production.up.railway.app/api/users/signup';
-
+            
             const response = await fetch(apiURL, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -55,7 +51,7 @@ export default function Signup() {
                });
 
             const data= await response.json();
-            console.log(response.status)
+          
             if (response.status === 201){
                 setSuccessMessage('Signup successful! Redirecting to login...');
                 setErrorMessage('');
@@ -114,11 +110,11 @@ export default function Signup() {
         onChange={handleInputChange}
         />
         <div className='button-section'>
-        <button type="button" class="btn btn-primary btn-lg custom-login-btn" onClick={handleSignup}><b>SignUp</b></button>
+        <button type="button" className="btn btn-primary btn-lg custom-login-btn" onClick={handleSignup}><b>SignUp</b></button>
       <p>
        <b> Already have an account? <span onClick={() => navigate('/')}>Login here</span></b>
       </p>
-      <button type="button" class="btn btn-primary btn-lg btn-google">Signup with <b>Google</b></button>
+      <button type="button" className="btn btn-primary btn-lg btn-google">Signup with <b>Google</b></button>
     </div>
     </form>
     {errorMessage && <div className="error-message">{errorMessage}</div>}
