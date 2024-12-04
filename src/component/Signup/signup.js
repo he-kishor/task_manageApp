@@ -33,7 +33,7 @@ export default function Signup() {
 
         //API Requesting
 
-        const apiURL='https://task-managementapi-production.up.railway.app/api/users/signup';
+        const apiURL='http://localhost:3003/api/users/signup';
         const payload = {
             fname,
             lname,
@@ -55,7 +55,7 @@ export default function Signup() {
             if (response.status === 201){
                 setSuccessMessage('Signup successful! Redirecting to login...');
                 setErrorMessage('');
-               setTimeout(() => navigate('/'), 3000); // Redirect to login after 3 seconds
+               setTimeout(() => navigate('/'), 300); 
             }else {
                 setErrorMessage(data.message || 'Signup failed. Please try again.');
                 setSuccessMessage('');
