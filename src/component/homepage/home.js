@@ -6,7 +6,7 @@ export default function Home() {
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
     const getfunction = async()=>{
-      const apiURL="https://task-managementapi-production.up.railway.app/api/task/get_alltask"
+      const apiURL="http://localhost:3003/api/task/get_alltask"
       try{
             
         const response = await fetch(apiURL, {
@@ -15,17 +15,16 @@ export default function Home() {
           credentials: 'include', // Add if your server sends cookies
            });
 
-          
+        const data= await response.json();
+        console.log(data)
       
-        if (response.status === 204){
+        if (response.status === 200){
             setSuccessMessage("get data");
-            const data= await response.json();
-            console.log(data)
             setErrorMessage('');
-           setTimeout(() => navigate('/'), 3000); // Redirect to login after 3 seconds
+           
         }else {
-            //setErrorMessage(data.message || 'Signup failed. Please try again.');
-            //setSuccessMessage('');
+            setErrorMessage(data.message || 'Signup failed. Please try again.');
+            setSuccessMessage('');
           }
       }
       catch (error) {
