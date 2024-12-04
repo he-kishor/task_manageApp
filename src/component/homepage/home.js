@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Home() {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const navigate = useNavigate();
+   
     const getfunction = async()=>{
       const apiURL="http://localhost:3003/api/task/get_alltask"
       try{
